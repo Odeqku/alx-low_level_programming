@@ -10,7 +10,7 @@
 
 	int main(void)
 {
-	int n;
+	int n = n;
 
 	if (n > 0)
 {
