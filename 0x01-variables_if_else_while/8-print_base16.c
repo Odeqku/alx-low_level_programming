@@ -8,11 +8,15 @@
 
 	int main(void)
 {
-	int i;
+	int i, c;
 
-	for (i = 0; i <= 15; i++)
+	for (i = 0; i <= 9; i++)
 {
 	putchar(i + '0');
+}
+	for (c = 'a'; c <= 'f'; c++)
+{
+	putchar(c);
 }
 {
 	putchar('\n');
