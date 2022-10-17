@@ -12,7 +12,7 @@
 
 	for (comb = 0; comb <= 9; comb++)
 {
-	putchar(comb + '0');
+	putchar((comb % 10) + '0');
 
 	putchar(',');
 	putchar(' ');
