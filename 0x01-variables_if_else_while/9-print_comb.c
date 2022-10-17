@@ -8,12 +8,11 @@
 
 	int main(void)
 {
-	int i;
+	int comb;
 
-	for (i = 0; i <= 9; i++)
+	for (comb = 0; comb <= 9; comb++)
 {
-	putchar((i%10)+ '0');
-
+	putchar((comb % 10) + '0');
 
 	putchar(',');
 	putchar(' ');
