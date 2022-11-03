@@ -6,7 +6,7 @@
   * Return: Always return 0.
   */
 
-int main()
+int main(void)
 {
 
 	_puts_recursion("School");
