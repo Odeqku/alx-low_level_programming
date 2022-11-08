@@ -1,50 +1,52 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * *argstostr - convert arguments on command line to strings
- * @ac: int type
- * @av: pointer to array
- * Return: arguments as strings
+ * argstostr - concatenates all the arguments of a program.
+ * @ac: argument count.
+ * @av: argument vector.
+ *
+ * Return: pointer of an array of char
  */
-
 char *argstostr(int ac, char **av)
 {
-	int size, count, count1, count2 = 0;
-	char *ptr;
+        char *aout;
+        int c, i, j, ia;
 
-	if (ac == 0 || av == NULL)
-	{
-		return (NULL);
-	}
+        if (ac == 0)
+                return (NULL);
 
-	for (count = 0; count < ac; count++)
-	{
-		for (count1 = 0; av[count][count1] != '\0'; count1++)
-		{
-			size += 1;
-		}
-		size += 1;
-	}
-	size += 1;
+        for (c = i = 0; i < ac; i++)
+        {
+                if (av[i] == NULL)
+                        return (NULL);
 
-	ptr = malloc(sizeof(char) * size);
-	if (ptr == NULL)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	for (count = 0; count < ac; count++)
-	{
-		for (count1 = 0; av[count][count1] != '\0'; count1++)
-		{
-			ptr[count2] = av[count][count1];
-			count2++;
-		}
-		ptr[count2] = '\n';
-		count2++;
-	}
-	ptr[count2] = '\0';
-	return (ptr);
+                for (j = 0; av[i][j] != '\0'; j++)
+                        c++;
+                c++;
+        }
+
+        aout = malloc((c + 1) * sizeof(char));
+
+        if (aout == NULL)
+        {
+                free(aout);
+                return (NULL);
+        }
+
+        for (i = j = ia = 0; ia < c; j++, ia++)
+        {
+                if (av[i][j] == '\0')
+                {
+                        aout[ia] = '\n';
+                        i++;
+                        ia++;
+                        j = 0;
+                }
+                if (ia < c - 1)
+                        aout[ia] = av[i][j];
+        }
+        aout[ia] = '\0';
+
+        return (aout);
 }
