@@ -1,6 +1,5 @@
 #include <stdio.h>
-#define _BASE_FILE_
-
+#include <stdlib.h>
 /**
   * main - prints the name of the current file
   *
@@ -8,7 +7,7 @@
   */
 int main(void)
 {
-	printf("%s\n", _BASE_FILE_);
+	printf("%s\n", __BASE_FILE__);
 
 	return (0);
 }
