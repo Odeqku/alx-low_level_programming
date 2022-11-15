@@ -1,5 +1,6 @@
-#ifndef ABS(x)
-#define ABS(x) abs(x)
+
 #include <stdlib.h>
+#ifndef ABS
+#define ABS(x) abs(x)
 
 #endif
