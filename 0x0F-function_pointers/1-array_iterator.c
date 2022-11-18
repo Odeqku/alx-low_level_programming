@@ -9,10 +9,17 @@
 
 void array_iterator(int *array, size_t size, void (*action)(int))
 {
-	size_t i;
+	int i; /* declare iter var */
 
-	for (i = 0; i < size; i++)
+	/* set condition for if array & size point to nothing */
+	if (array == NULL || action  == NULL)
+		return;
+
+	/* iterate through array */
+	for (i = 0; size > 0; i++)
 	{
-		action(array[i]);
+		action(*array); /* function call */
+		array++; /* update array step */
+		size--; /* decrease size */
 	}
 }
