@@ -1,13 +1,6 @@
 #ifndef LISTS_H
 #define LISTS_H
 
-/*
- * File: lists.h
- * Auth: Isaac Baccah
- * Desc: Header file containing prototypes and definitions for all functions
- *       and types written in the 0x12-more_singly_linked_lists directory.
- */
-
 #include <stdlib.h>
 
 /**
