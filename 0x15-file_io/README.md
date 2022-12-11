@@ -11,7 +11,7 @@
 - What is a system call
 - What is the difference between a function and a system call
 
-# _The Project To Be Written Are Tittled:
+# _The Project To Be Written Are Tittled:_
 
 - Tread lightly, she is near (Task 0)
 - Under the slow (Task 1)
