@@ -13,7 +13,15 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	char str[1025];
-
+	ssize_t read_num;
+	ssize_t write_num;
+	
+/*	if (strcmp(filename, NULL) == 0)
+	{
+		return (0);
+		exit(0);
+	}
+*/
 	int fd = open(filename, O_RDONLY | O_CREAT, S_IRUSR | S_IWUSR);
 
 
@@ -24,10 +32,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
+	read_num = read(fd, str,  letters);
 
-	ssize_t read_num = read(fd, str,  letters);
-
-	ssize_t write_num = write(STDOUT_FILENO, str, read_num);
+	write_num = write(STDOUT_FILENO, str, read_num);
 
 	if (write_num < read_num)
 	{
@@ -38,4 +45,5 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 
 	close(fd);
+	return (0);
 }
