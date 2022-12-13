@@ -19,7 +19,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	int fd = open(filename, O_RDWR | O_CREAT,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	
+
 
 	if (fd < 0 || (strcmp(filename, "NULL") == 0))
 	{
