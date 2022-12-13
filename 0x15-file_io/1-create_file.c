@@ -16,15 +16,20 @@
 int create_file(const char *filename, char *text_content)
 {
 	ssize_t len = strlen(text_content);
-
 	int fp;
 
-	if (strcmp(text_content, "NULL") == 0)
+	if (strcmp(text_content, "NULL") == 0 && strcmp(filename, "NULL") != 0)
 	{
 		fp = open(filename, O_RDONLY | O_CREAT, S_IRUSR | S_IWUSR);
-		return (1);
+		if (fp < 0)
+		{
+			return (-1);
+		}
+		else
+		{
+			return (1);
+		}
 	}
-
 	if (strcmp(filename, "NULL") == 0)
 		return (-1);
 
@@ -35,18 +40,16 @@ int create_file(const char *filename, char *text_content)
 		{
 			return (-1);
 		}
+		else if (write(fp, text_content, len) == len)
+		{
+			close(fp);
+			return (1);
+		}
 		else
 		{
-			if (write(fp, text_content, len) == len)
-			{
-				close(fp);
-				return (1);
-			}
-			else
-			{
-				close(fp);
-				return (-1);
-			}
+			close(fp);
+			return (-1);
+
 		}
 	}
 	return (0);
