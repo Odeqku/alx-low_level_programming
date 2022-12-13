@@ -23,22 +23,27 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	if (fd < 0 || (strcmp(filename, "NULL") == 0))
 	{
+		free(str);
 		return (0);
 	}
 	else
 	{
 		read_num = read(fd, str,  letters);
 		write_num = write(STDOUT_FILENO, str, read_num);
+
+		if (write_num != read_num)
+		{
+			free(str);
+			close(fd);
+			return (0);
+		}
+		else
+		{
+			free(str);
+			close(fd);
+			return (write_num);
+		}
 	}
 
-	if (write_num != read_num)
-	{
-		return (0);
-	}
-	else
-		return (read_num);
-
-	free(str);
-	close(fd);
 	return (0);
 }
