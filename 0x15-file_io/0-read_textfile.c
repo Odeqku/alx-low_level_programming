@@ -1,5 +1,5 @@
 /**
-  * ssize_t read_textfile - reads file
+  * read_textfile - reads file
   * @filename: is the file name to be read
   * @letters: number of characters to be read
   *
@@ -15,7 +15,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	char *str = malloc(sizeof(str) * letters);
 	ssize_t read_num;
 	ssize_t write_num;
-	
+
 	int fd = open(filename, O_RDONLY | O_CREAT, S_IRUSR | S_IWUSR);
 
 
