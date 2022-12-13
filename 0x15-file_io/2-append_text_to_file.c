@@ -13,25 +13,20 @@ int append_text_to_file(const char *filename, char *text_content)
 {
 	int  fd = open(filename, O_RDWR | O_APPEND);
 
-/*	printf("%s", text_content);*/
 	if (fd > 0 && strcmp(text_content, "NULL") != 0)
 	{
-		printf("Hi");
 		write(fd, text_content, strlen(text_content));
 		close(fd);
 		return (1);
 	}
 	else if (fd < 0)
 	{
-		printf("%d\n", fd);
-		printf("Hii");
 		return (-1);
 	}
 
 
 	if (strcmp(filename, "NULL") == 0)
 	{
-		printf("Hiii");
 		return (-1);
 	}
 	else if (fd > 0 && strcmp(text_content, "NULL") == 0)
@@ -41,12 +36,10 @@ int append_text_to_file(const char *filename, char *text_content)
 	}
 	else if (strcmp(text_content, "NULL") == 0 && fd < 0)
 	{
-		printf("Hiiii");
 		return (-1);
 	}
 	else if (fd < 0 && strcmp(text_content, "NULL") != 0)
 	{
-		printf("Hiiiii");
 		return (-1);
 	}
 
