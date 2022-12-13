@@ -12,38 +12,31 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	char str[1025];
+	char *str = malloc(sizeof(str) * letters);
 	ssize_t read_num;
 	ssize_t write_num;
 	
-/*	if (strcmp(filename, NULL) == 0)
-	{
-		return (0);
-		exit(0);
-	}
-*/
 	int fd = open(filename, O_RDONLY | O_CREAT, S_IRUSR | S_IWUSR);
 
 
-	if (fd < 0)
-	{
-		perror("Error");
-
-		return (0);
-	}
-
-	read_num = read(fd, str,  letters);
-
-	write_num = write(STDOUT_FILENO, str, read_num);
-
-	if (write_num < read_num)
+	if (fd < 0 || (strcmp(filename, "NULL") == 0))
 	{
 		return (0);
 	}
-	else if (write_num == read_num)
+	else
+	{
+		read_num = read(fd, str,  letters);
+		write_num = write(STDOUT_FILENO, str, read_num);
+	}
+
+	if (write_num != read_num)
+	{
+		return (0);
+	}
+	else
 		return (read_num);
 
-
+	free(str);
 	close(fd);
 	return (0);
 }
