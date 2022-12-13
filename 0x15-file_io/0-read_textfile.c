@@ -16,7 +16,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	ssize_t read_num;
 	ssize_t write_num;
 
-	int fd = open(filename, O_RDONLY | O_CREAT, S_IRUSR | S_IWUSR);
+	int fd = open(filename, O_RDONLY | O_CREAT, S_IRUSR | S_IRGRP | S_IROTH);
 
 
 	if (fd < 0 || (strcmp(filename, "NULL") == 0))
