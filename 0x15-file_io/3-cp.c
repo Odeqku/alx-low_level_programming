@@ -39,7 +39,7 @@ int main(int ac, char **av)
 ssize_t cp_file_from_file_to(const char *file1, const char *file2)
 {
 	ssize_t fp1, fp2, res1, res2, res3;
-	char *str = malloc(3000 * sizeof(char));
+	char *str = malloc(1025 * sizeof(char));
 
 	fp1 = open(file1, O_RDONLY);
 	fp2 = open(file2, O_WRONLY | O_CREAT | O_TRUNC,
@@ -57,8 +57,9 @@ ssize_t cp_file_from_file_to(const char *file1, const char *file2)
 	}
 	else
 	{
-		res3 = read(fp1, str, 3000);
-		write(fp2, str, res3);
+		res3 = read(fp1, str, 1025);
+		printf("%ld\n", write(fp2, str, res3)
+		      );
 		res1 = close(fp1);
 		res2 = close(fp2);
 		free(str);
