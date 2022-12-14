@@ -39,15 +39,15 @@ int main(int ac, char **av)
 ssize_t cp_file_from_file_to(const char *file1, const char *file2)
 {
 	ssize_t fp1, fp2, res1, res2, res3;
-	char str[3000];
+	char *str = malloc(3000 * sizeof(char));
 
 	fp1 = open(file1, O_RDONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	fp2 = open(file2, O_WRONLY | O_CREAT | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+
 	if (fp1 < 0)
 	{
 		dprintf(2, "Error: Can't read from %s\n", file1);
-
 		exit(98);
 	}
 	if (fp2 < 0)
@@ -57,21 +57,30 @@ ssize_t cp_file_from_file_to(const char *file1, const char *file2)
 	}
 	else
 	{
-		res3 = read(fp1, str, 1024);
+		res3 = read(fp1, str, 3000);
 		write(fp2, str, res3);
+		res1 = close(fp1);
+		res2 = close(fp2);
+		free(str);
+
+		if (res1 != 0 && res2 != 0)
+		{
+			dprintf(2, "Error: Can't close fd's %ld\n", fp1);
+			dprintf(2, "Error: Can't close fd's %ld\n", fp2);
+			exit(100);
+		}
+		else if (res1 != 0)
+		{
+			dprintf(2, "Error: Can't close fd's %ld\n", fp1);
+			exit(100);
+		}
+		else if (res2 != 0)
+		{
+			dprintf(2, "Error: Can't close fd's %ld\n", fp2);
+			exit(100);
+		}
 		return (1);
 	}
-	res1 = close(fp1);
-	res2 = close(fp2);
-	if (res1 != 0)
-	{
-		dprintf(2, "Error: Can't close fd's %ld\n", fp1);
-		exit(100);
-	}
-	else if (res2 != 0)
-	{
-		dprintf(2, "Error: Can't close fd's %ld\n", fp2);
-		exit(100);
-	}
-	return (0);
+
+		return (0);
 }
