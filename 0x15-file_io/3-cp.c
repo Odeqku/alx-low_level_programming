@@ -39,12 +39,12 @@ int main(int ac, char **av)
 ssize_t cp_file_from_file_to(const char *file1, const char *file2)
 {
 	ssize_t fp1, fp2, res1, res2, res3;
-	char str[1024];
+	char str[3000];
 
-	fp1 = open(file1, O_RDONLY | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	fp1 = open(file1, O_RDONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	fp2 = open(file2, O_WRONLY | O_CREAT | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	if (fp1 != 3)
+	if (fp1 < 0)
 	{
 		dprintf(2, "Error: Can't read from %s\n", file1);
 
