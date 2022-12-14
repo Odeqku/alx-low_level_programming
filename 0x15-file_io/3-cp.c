@@ -41,7 +41,7 @@ ssize_t cp_file_from_file_to(const char *file1, const char *file2)
 	ssize_t fp1, fp2, res1, res2, res3;
 	char *str = malloc(3000 * sizeof(char));
 
-	fp1 = open(file1, O_RDONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	fp1 = open(file1, O_RDONLY);
 	fp2 = open(file2, O_WRONLY | O_CREAT | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 
