@@ -19,24 +19,20 @@ int append_text_to_file(const char *filename, char *text_content)
 		close(fd);
 		return (1);
 	}
-	else if ((fd < 0 || strcmp(filename, "NULL") == 0)  ||
+/*	else if ((fd < 0 || strcmp(filename, "NULL") == 0)  ||
 			strcmp(text_content, "NULL") == 0)
 	{
 		return (-1);
-	}
+	}*/
 	else if (fd > 0 && strcmp(text_content, "NULL") == 0)
 	{
 		close(fd);
 		return (1);
 	}
-/*	else if (strcmp(text_content, "NULL") == 0 && fd < 0)
+	/*else if (fd < 0 && strcmp(text_content, "NULL") != 0)
 	{
 		return (-1);
 	}*/
-	else if (fd < 0 && strcmp(text_content, "NULL") != 0)
-	{
-		return (-1);
-	}
-
-	return (0);
+	close(fd);
+	return (-1);
 }
