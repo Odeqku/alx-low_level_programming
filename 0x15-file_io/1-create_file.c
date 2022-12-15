@@ -23,10 +23,11 @@ int create_file(const char *filename, char *text_content)
 		fp = open(filename, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
 		if (fp < 0)
 		{
-			return (1);
+			return (-1);
 		}
 		else
 		{
+			close(fp);
 			return (1);
 		}
 	}
