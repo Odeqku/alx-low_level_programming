@@ -20,10 +20,10 @@ int create_file(const char *filename, char *text_content)
 
 	if (strcmp(text_content, "NULL") == 0 && strcmp(filename, "NULL") != 0)
 	{
-		fp = open(filename, O_RDONLY | O_CREAT, S_IRUSR | S_IWUSR);
+		fp = open(filename, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
 		if (fp < 0)
 		{
-			return (-1);
+			return (1);
 		}
 		else
 		{
