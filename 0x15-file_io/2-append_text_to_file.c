@@ -13,20 +13,14 @@ int append_text_to_file(const char *filename, char *text_content)
 {
 	int  fd = open(filename, O_WRONLY | O_APPEND);
 
-	if (fd > 0 && (strcmp(text_content, "NULL") != 0 ||
-				strcmp(text_content, "NULL") == 0))
+	if (fd > 0 && strcmp(text_content, "NULL") != 0)
 	{
 		write(fd, text_content, strlen(text_content));
 		close(fd);
 		return (1);
 	}
-	else if (fd < 0)
-	{
-		return (-1);
-	}
-
-
-	if (strcmp(filename, "NULL") == 0)
+	else if ((fd < 0 || strcmp(filename, "NULL") == 0)  ||
+			strcmp(text_content, "NULL") == 0)
 	{
 		return (-1);
 	}
